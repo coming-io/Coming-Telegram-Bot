@@ -18,8 +18,8 @@ import pymongo
 import logging
 import os
 import pickle
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 USERINFO = {}  # holds user information
 CAPTCHA_DATA = {}
 # %% ENV VARIABLES
@@ -253,7 +253,7 @@ def generateCaptcha(update, context):
     image = captcha["image"]
     characters = captcha["characters"]
     CAPTCHA_DATA[user.id] = characters
-    filename = f"{user.id}.png"
+    filename = f"captcha/{user.id}.png"
     image.save(filename, "png")
     photo = open(filename, "rb")
     update.message.reply_photo(photo)
